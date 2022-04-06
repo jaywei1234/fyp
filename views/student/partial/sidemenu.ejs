@@ -1,0 +1,84 @@
+<aside class="student" style="width: 200px; ">
+    <section>
+        <h6 class="side-heading3"><span class="reflect" data-text="Student" style="font-size: 20px;">Student</span></h6>
+        <ul class="list-unstyled">
+            <% if (req.session.role=='student' ) {%>
+                <li><a class="side-button1 <%= req.path == '/student' ? 'active':'' %>" href="/student">Student
+                        Application</a>
+                </li>
+                <%}%>
+                    <!-- <li><a class="side-button1 <%= req.path == '/status' ? 'active':'' %>" href="/status">Status</a></li> -->
+
+                    <% if (req.session.role=='admin' ) {%>
+                        <li class="dropdown">
+                            <a href="/index" class="side-button1 dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-fw fa-plus"></i>
+                                Status <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="/status">To be approve</a></li>
+                                <li><a href="/approved">Approved</a></li>
+                            </ul>
+                        </li>
+                        <% } %>
+
+                            <% if (req.session.role=='student' ) {%>
+                                <li><a class="side-button1 <%= req.path == '/status' ? 'active':'' %>"
+                                        href="/status">Status</a></li>
+                                <% } %>
+
+                                    <% if (req.session.role=='admin' ) {%>
+                                        <li><a class="side-button1 <%= req.path == '/dashboard' ? 'active':'' %>"
+                                                href="/dashboard">Dashboard</a></li>
+
+                                        <!-- <li class="dropdown">
+
+                                            <a href="/index" class="side-button1 dropdown-toggle"
+                                                data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Department
+                                                <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+
+                                                <li><a href="/FOA">Faculty of Arts</a></li>
+                                                <li><a href="/SOB">School of Business</a></li>
+                                                <li><a href="/CM">School of Chinese Medicine</a></li>
+                                                <li><a href="/COMM">School of Communication</a></li>
+                                                <li><a href="/SCI">Faculty of Science</a></li>
+                                                <li><a href="/SS">Faculty of Social Science</a></li>
+                                                <li><a href="/VA">Academy of Visual Arts</a></li>
+                                                <li><a href="/CE">School of Continuing Education</a></li>
+                                            </ul>
+                                        </li> -->
+                                        <% } %>
+
+                                            <% if (req.session.Faculty=='CE' && req.session.role=='teacher' ) {%>
+                                                <li><a class="side-button1 <%= req.path == '/CE' ? 'active':'' %>"
+                                                        href="/CE">Reply</a></li>
+                                                <% } else if (req.session.Faculty=='CM' && req.session.role=='teacher' ) {%>
+                                                    <li><a class="side-button1 <%= req.path == '/CM' ? 'active':'' %>"
+                                                            href="/CM">Reply</a></li>
+                                                    <% } else if (req.session.Faculty=='COMM' && req.session.role=='teacher' ) {%>
+                                                        <li><a class="side-button1 <%= req.path == '/COMM' ? 'active':'' %>"
+                                                                href="/COMM">Reply</a></li>
+                                                        <% } else if (req.session.Faculty=='FOA' && req.session.role=='teacher' ) {%>
+                                                            <li><a class="side-button1 <%= req.path == '/FOA' ? 'active':'' %>"
+                                                                    href="/FOA">Reply</a></li>
+                                                            <% } else if (req.session.Faculty=='SCI' && req.session.role=='teacher' ) {%>
+                                                                <li><a class="side-button1 <%= req.path == '/SCI' ? 'active':'' %>"
+                                                                        href="/SCI">Reply</a></li>
+                                                                <% } else if (req.session.Faculty=='SOB' && req.session.role=='teacher' ) {%>
+                                                                    <li><a class="side-button1 <%= req.path == '/SOB' ? 'active':'' %>"
+                                                                            href="/SOB">Reply</a>
+                                                                    </li>
+                                                                    <% } else if (req.session.Faculty=='SS' && req.session.role=='teacher' ) {%>
+                                                                        <li><a class="side-button1 <%= req.path == '/SS' ? 'active':'' %>"
+                                                                                href="/SS">Reply</a>
+                                                                        </li>
+                                                                        <% } else if (req.session.Faculty=='VA' && req.session.role=='teacher' ) {%>
+                                                                            <li><a class="side-button1 <%= req.path == '/VA' ? 'active':'' %>"
+                                                                                    href="/VA">Reply</a>
+                                                                            </li>
+                                                                            <% } %>
+
+        </ul>
+    </section>
+</aside>

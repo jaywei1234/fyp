@@ -1,0 +1,18 @@
+<%- partial('./partial/login-register-sidemenu.ejs')%>
+    <div class="content user-login">
+        <h5 class="main-heading1">User <span class="highlight">Login</span></h5>
+        <form class="form-inline ajax" action="/user/login" method="POST" data-alert200="Login success。"
+            data-alert401="Invalid email or password，please enter again。"
+            data-callback200="location.assign(new URLSearchParams(window.location.search).get('r') || '/user');">
+            <div class="form-group required mx-2">
+                <label class="sr-only" for="inputEmail">Email</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" required>
+            </div>
+            <div class="form-group required mx-2">
+                <label class="sr-only" for="inputPassword1">Password</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password"
+                    required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>

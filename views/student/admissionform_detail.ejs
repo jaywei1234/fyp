@@ -1,0 +1,112 @@
+<%- partial('./partial/sidemenu.ejs') %>
+    <section class="content aboutus flex-lg-grow-1">
+        <h5 class="main-heading1">Student<span class="highlight"> Information</span></h5>
+        <div class="container-fluid">
+
+            <div class="col-12">
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Name (Eng):</span>
+                        <%= student.EngName %>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">姓名 (中文): </span>
+                        <%= student.ChiName %>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">HK ID:</span>
+                        <%= student.Id%>
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Gender:</span>
+                        <%= student.Gender %>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Birth Date:</span>
+                        <%=student.Birthd%>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Home:</span>
+                        <% if (student.Hnumber=="" ) { %>
+                            <label style="font-size:16px">N/A</label>
+                            <% }else{%>
+                                <%= student.Hnumber %>
+                                    <% }%>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Mobile:</span>
+                        <%= student.Mnumber %>
+
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Email Address:</span>
+                        <%= student.Email %>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Address:</span>
+                        <%= student.EngAddress%>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">DSE Best 5:</span>
+                        <br>
+                        <span class="font-weight-bold">Chinese:</span>
+                        <%= student.ChiScore%>
+                            <br>
+                            <span class="font-weight-bold">English:</span>
+                            <%= student.EngScore%>
+                                <br>
+                                <span class="font-weight-bold">Mathematics:</span>
+                                <%= student.MathScore%>
+                                    <br>
+                                    <span class="font-weight-bold">Liberal Studies:</span>
+                                    <%= student.LSScore%>
+                                        <br>
+                                        <span class="font-weight-bold">
+                                            <%= student.E1%>:
+                                        </span>
+                                        <%= student.E1Score%>
+                                            <% if (student.E2 !="" ) { %>
+                                                <br>
+                                                <span class="font-weight-bold">Chinese:</span>
+                                                <%= student.ChiScore%>
+                                                    <% } %>
+                    </li>
+
+                    <li class="list-group-item">
+                            <label><b>Download certificate</b></label>
+                            <% if (student.avatar) { %>
+                                <img src="<%student.avatar%>" />
+                                <a download="certificate.pdf" href="<%=student.avatar%>" target="_blank">Download</a>
+
+                                <% } %>
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Select Faculty you are applying for:</span>
+                        <%= student.studentFaculty %>
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Personal Statement:</span>
+                        <%= student.statement %>
+                    </li>
+
+                </ul>
+            </div>
+        </div>

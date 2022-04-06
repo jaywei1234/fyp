@@ -1,0 +1,236 @@
+<%- partial('./partial/sidemenu.ejs') %>
+<div class="default-page" style="background-color:	#FFFFE0; width: 100%;">
+
+    <table>
+        <tr>
+
+            <td style="font-size:25px;text-align: center;font-weight: bold">University Student Admission
+                Form<br><br>
+            </td>
+
+        </tr>
+    </table>
+
+
+    <form action="/student/update_student/<%=student.id%>" method="POST">
+
+        <!--  <div class="form-group">
+        <label style="font-size:14px"><b>確認教練?</b></label>
+  
+        <% if (student.comfirm_coach=="是"){ %>
+          <p style="font-size:16pt"><a href="/student/canel_student/<%=student.id%>">取消 Cancel</a></p>
+          <% }else{ %>
+     <p style="font-size:16pt"><a href="/student/confirm_student/<%=student.id%>">確認 Submit</a></p> 
+     <% } %>
+  
+      </div> -->
+
+        <br>
+        <p style="font-size:20px"><b>Personal Particulars：</b></p>
+
+        <div class="form-group">
+            <label style="font-size:15px">
+                Name (Eng)</label>
+            <input type="text" name="Student[EngName]" value="<%= student.EngName%>"
+                onkeyup="value=value.replace(/[^\a-\z\A-\Z]/g,' ')" required>
+            <label style="font-size:15px">姓名 (中文)
+                Name (Chi)</label>
+            <input type="text" name="Student[ChiName]" value="<%= student.ChiName%>"
+                onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label style="font-size:15px">
+                HKID no.
+            </label>
+            <input type="text" name="Student[Id]" value="<%= student.Id%>"
+                onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9()]/g,'')" required>
+
+
+            <label style="font-size:15px">
+                Gender</label>
+
+            <% if (student.Gender=="F" ){ %>
+                <input type="radio" name="Student[Gender]" value="F" checked>
+                <label style="font-size:15px">Female</label>
+                <input type="radio" name="Student[Gender]" value="M">
+                <label style="font-size:15px">Male</label>
+
+                <% }else if (student.Gender=="M" ){%>
+                    <input type="radio" name="Student[Gender]" value="F">
+                    <label style="font-size:15px">Female</label>
+                    <input type="radio" name="Studnet[Gender]" value="M" checked>
+                    <label style="font-size:15px">Male</label>
+
+                    <%} else {%>
+                        <input type="radio" name="Student[Gender]" value="F" required>
+                        <label style="font-size:15px">Female</label>
+                        <input type="radio" name="Student[Gender]" value="M" required>
+                        <label style="font-size:15px">Male</label>
+                        <%}%>
+        </div>
+        <br>
+        <div class="form-group">
+            <label style="font-size:15px">
+                Date of birth
+            </label>
+            <input type="date" name="Student[Birthd]" value="<%= student.Birthd%>" required>
+        </div>
+
+        <br>
+        <div class="form-group">
+            <label style="font-size:15px">
+                Contact tel no
+            </label>
+            <label style="font-size:15px">( Home)
+            </label>
+            <input type="text" name="Student[Hnumber]" value="<%= student.Hnumber%>" maxlength="8" pattern="\d{8}">
+            <label style="font-size:15px">( Moblie)
+            </label>
+            <input type="text" name="Student[Mnumber]" value="<%= student.Mnumber%>" maxlength="8" pattern="\d{8}"
+                required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label style="font-size:15px">
+                Email address
+            </label>
+
+            <input type="email" name="Student[Email]" value="<%= student.Email%>"
+                pattern="[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+" style="width:300pt"
+                required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label style="font-size:15px">
+                Address (Eng)
+            </label>
+
+            <input type="text" name="Student[EngAddress]" value="<%= student.EngAddress%>" style="width:350pt" required>
+
+        </div>
+
+        <br>
+        <p style="font-size:20px"><b>Academic Result：</b></p>
+        <div class="form-group">
+            <label style="font-size:15px">
+                DSE Best5</label>
+            <br>
+            <label style="font-size:15px">
+                Chinese</label>
+            <select name="Student[ChiScore]" value="<%= student.ChiScore%>" required>
+                <option value="">Please select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">5*</option>
+                <option value="7">5**</option>
+            </select>
+            <br>
+            <label style="font-size:15px">
+                English</label>
+            <select name="Student[EngScore]" value="<%= student.EngScore%>" required>
+                <option value="">Please select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">5*</option>
+                <option value="7">5**</option>
+            </select>
+            <br>
+            <label style="font-size:15px">
+                Mathematics</label>
+            <select name="Student[MathScore]" value="<%= student.MathScore%>" required>
+                <option value="">Please select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">5*</option>
+                <option value="7">5**</option>
+            </select>
+            <br>
+            <label style="font-size:15px">
+                Liberal Studies</label>
+            <select name="Student[LSScore]" value="<%= student.LSScore%>" required>
+                <option value="">Please select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">5*</option>
+                <option value="7">5**</option>
+            </select>
+            <br>
+            <label style="font-size:15px">
+                Electives 1</label>
+            <input type="text" name="Student[E1]" value="<%= student.E1%>"
+                onkeyup="value=value.replace(/[^\a-\z\A-\Z]/g,'')" onpaste="value=value.replace(/[^\a-\z\A-\Z\ ]/g,'')"
+                oncontextmenu="value=value.replace(/[^\a-\z\A-\Z\ ]/g,'')" required>
+            <select name="Student[E1Score]" value="<%= student.E1Score%>" required>
+                <option value="">Please select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">5*</option>
+                <option value="7">5**</option>
+            </select>
+            <br>
+            <label style="font-size:15px">
+                Electives 2</label>
+            </label>
+            <input type="text" name="Student[E2]" value="<%= student.E2%>"
+                onkeyup="value=value.replace(/[^\a-\z\A-\Z\ ]/g,'')"
+                onpaste="value=value.replace(/[^\a-\z\A-\Z\ ]/g,'')"
+                oncontextmenu="value=value.replace(/[^\a-\z\A-\Z\ ]/g,'')">
+            <select name="Student[E2Score]" value="<%= student.E2Score%>">
+                <option value="">Please select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">5*</option>
+                <option value="7">5**</option>
+            </select>
+            <br><br>
+        </div>
+        <br>
+        <div class="form-group">
+            <label styple="font-size:15px"> Select Faculty you are applying for:</label>
+            <select name="Student[studentFaculty]" value="<%= student.studentFaculty%>" required>
+                <option value="">Please select</option>
+                <option value="FOA">Faculty of Arts</option>
+                <option value="SOB">School of Business</option>
+                <option value="CM">School of Chinese Medicine</option>
+                <option value="COMM">School of Communication</option>
+                <option value="SCI">Faculty of Science</option>
+                <option value="SS">Faculty of Social Science</option>
+                <option value="VA">Academy of Visual Arts</option>
+                <option value="CE">School of Continuing Education</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label style="font-size:15px"> Personal statement (within 100 words):
+            </label>
+            </label>
+            <textarea type="text" name="Student[statement]" value="<%= student.statement%>" cols=50 rows=12 required>
+                        </textarea>
+
+        </div>
+
+
+
+
+        <button type="submit" class="btn btn-primary">提交 Submit</button>
+    </form>
+</div>

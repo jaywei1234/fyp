@@ -1,0 +1,114 @@
+<%- partial('./partial/sidemenu.ejs') %>
+<form action="/student/admissionformPreview" style="width: 100%;" method="POST">
+    <div class="row">
+        <div class="card col-12 ">
+            <label style="font-size:17pt"><b>預覽 Preview</b></label>
+            <div class="col-10">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Name (Eng):</span>
+                        <%= data.EngName %>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">姓名 (中文): </span>
+                        <%= data.ChiName %>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">HK ID:</span>
+                        <%= data.Id%>
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Gender:</span>
+                        <%= data.Gender %>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Birth Date:</span>
+                        <%=data.Birthd%>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Home:</span>
+                        <% if (data.Hnumber=="" ) { %>
+                            <label style="font-size:16px">N/A</label>
+                            <% }else{%>
+                                <%= data.Hnumber %>
+                                    <% }%>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Mobile:</span>
+                        <%= data.Mnumber %>
+
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Email Address:</span>
+                        <%= data.Email %>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Address:</span>
+                        <%= data.EngAddress%>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">DSE Best 5:</span>
+                        <br>
+                        <span class="font-weight-bold">Chinese:</span>
+                        <%= data.ChiScore%>
+                        <br>
+                        <span class="font-weight-bold">English:</span>
+                        <%= data.EngScore%>
+                        <br>
+                        <span class="font-weight-bold">Mathematics:</span>
+                        <%= data.MathScore%>
+                        <br>
+                        <span class="font-weight-bold">Liberal Studies:</span>
+                        <%= data.LSScore%>
+                        <br>
+                        <span class="font-weight-bold"><%= data.E1%>:</span>
+                        <%= data.E1Score%>
+                        <br>
+                        <% if (data.E2 != "") {%>
+                        <span class="font-weight-bold"><%= data.E2%>:</span>
+                        <%= data.E2Score%>
+                        <% } %>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Select Faculty you are applying for:</span>
+                        <%= data.studentFaculty%>
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="font-weight-bold">Personal Statement:</span>
+                        <%= data.statement%>
+                    </li>
+
+                    <br><br>
+                    <button type="submit" class="btn btn-info" onclick="message()">提交 Submit</button>
+                    <button type="button" class="btn btn-danger" onclick="history.back()">取消 Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    function message() {
+        alert("提交成功!!");
+    }
+
+
+</script>

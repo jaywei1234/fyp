@@ -1,0 +1,44 @@
+<%- partial('./partial/sidemenu.ejs') %>
+
+    <% if (req.session.role=='admin' ) {%>
+
+        <section class="content aboutus flex-lg-grow-1">
+            <h5 class="main-heading1">Application<span class="highlight"> List</span></h5>
+            <div class="container-fluid">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"># </th>
+                            <th scope="col">Student No.</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Result</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <% student.forEach(function(model) { %>
+
+                            <% if (model.EngName !="" && model.confirm_student=="Y" ){ %>
+
+                                <tr>
+                                    <th scope="row">√</th>
+                                    <td>INDC<%=model.StudentNo%>
+                                    </td>
+                                    <td><a href="/student/admissionform_detail/<%=model.id%>">
+                                            <%= model.EngName %>
+                                        </a></td>
+                                        <% if (model.confirm_student != "") { %>
+                                    <td></td>
+                                    <% } %>
+                                </tr>
+
+                                <%}%>
+
+
+
+
+                                    <% }); %>
+                                        <%}%>

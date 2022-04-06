@@ -1,0 +1,139 @@
+<%- partial('./partial/sidemenu.ejs') %>
+    <% if (req.session.Faculty=="SS" ) { %>
+        <section class="content aboutus flex-lg-grow-1">
+            <h5 class="main-heading1"> Application<span class="highlight"> List</span></h5>
+            <div class="container-fluid">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Student No.</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Result</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+
+                        <% student.forEach(function(model) { %>
+
+
+
+                            <% if (model.EngName !="" && model.confirm_student=="Y" && model.teacherFaculty=="SS" ){ %>
+                                <tr>
+                                    <td>INDC<%=model.StudentNo%>
+                                    </td>
+                                    <td><a href="/student/admissionform_detail/<%=model.id%>">
+                                            <%= model.EngName %>
+                                        </a></td>
+                                    <td><button type="button" class="btn btn-primary"
+                                            onclick="email('<%=model.id%>')">Interview</button></td>
+                                    <td><button type="button" class="btn btn-primary"
+                                            onclick='location.href="/comment/<%=model.id%>"'>Comment</button></td>
+                                    <% if (model.admit_student=="" ) { %>
+                                        <td><button type="button" class="btn btn-primary"
+                                                onclick="admitStudent('<%= model.id%>')">Admit </button>
+                                        </td>
+                                        <td><button type="button" class="btn btn-danger"
+                                                onclick="rejectStudent('<%= model.id%>')">Reject </button>
+                                        </td>
+                                        <% } else if (model.admit_student=="Y" ) {%>
+                                            <td>Admitted</td>
+                                            <% } else { %>
+                                                <td>Rejected</td>
+                                                <% } %>
+                                </tr>
+
+                                <%}%>
+
+
+
+
+                                    <% }); %>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </section>
+        <% } %>
+
+            <script>
+                async function email(id) {
+
+                    var r = confirm("Send Interview Email?");
+
+                    if (r) {
+
+                        var response = await fetch("/student/email/" + id, {
+                            method: "POST",
+                            credentials: 'same-origin',
+                        });
+
+                        if (response.ok) {
+                            var data = await response.json();
+                            alert(data.message);
+                            window.location = data.url;
+                        } else {
+                            alert(response.status + ": " + response.statusText);
+                        }
+
+                    } else {
+                        alert("cancelled");
+                    }
+
+                };
+
+                async function admitStudent(id) {
+
+                    var r = confirm("Admit Student?");
+
+                    if (r) {
+
+                        var response = await fetch("/student/admit_student/" + id, {
+                            method: "POST",
+                            credentials: 'same-origin',
+                        });
+
+                        if (response.ok) {
+                            var data = await response.json();
+                            alert(data.message);
+                            window.location = data.url;
+                        } else {
+                            alert(response.status + ": " + response.statusText);
+                        }
+
+                    } else {
+                        alert("cancelled");
+                    }
+
+                };
+
+                async function rejectStudent(id) {
+
+                    var r = confirm("Reject Student?");
+
+                    if (r) {
+
+                        var response = await fetch("/student/reject_student/" + id, {
+                            method: "POST",
+                            credentials: 'same-origin',
+                        });
+
+                        if (response.ok) {
+                            var data = await response.json();
+                            alert(data.message);
+                            window.location = data.url;
+                        } else {
+                            alert(response.status + ": " + response.statusText);
+                        }
+
+                    } else {
+                        alert("cancelled");
+                    }
+
+                };
+            </script>

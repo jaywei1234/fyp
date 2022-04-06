@@ -1,0 +1,251 @@
+<%- partial('./partial/sidemenu.ejs') %>
+
+    <% if (req.session.role=='admin' ) {%>
+
+        <section class="content aboutus flex-lg-grow-1">
+            <h5 class="main-heading1">Application<span class="highlight"> List</span></h5>
+            <div class="container-fluid">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"># </th>
+                            <th scope="col">Student No.</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Result</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <% student.forEach(function(model) { %>
+                            <% if (model.EngName !="" && model.confirm_student=="" ){ %>
+                                <tr>
+                                    <th scope="row"></th>
+
+
+                                    <td>waiting...</td>
+
+
+                                    <td><a href="/student/update_student/<%=model.id%>">
+                                            <%= model.EngName %>
+                                        </a></td>
+                                    <!-- <% if (model.confirm_student == "" ){ %> -->
+
+                                    <td>Waiting</td>
+
+                                    <td><button type="button" class="btn btn-primary"
+                                            onclick="confirmStudent('<%= model.id%>')">Accept </button>
+                                    </td>
+
+                                    <td><button type="button" class="btn btn-danger"
+                                            onclick="cancelStudent('<%= model.id%>')">Reject </button>
+                                    </td>
+
+
+
+                                    <!-- <% }
+                else if (model.confirm_coach == "是" ){ %>
+                <td>已審批</td>
+                <td><button type="button" class="btn btn-primary">asdsd</button></td>
+      
+                <% } else if (model.confirm_coach == "否" ){ %>
+                <td>已拒絕</td>
+                <td><button type="button" class="btn btn-primary">已拒絕</button></td>
+                <%}%> -->
+
+                                </tr>
+
+                                <%}%>
+                                    <% }); %>
+
+
+
+
+
+
+
+                    </tbody>
+
+                </table>
+
+
+
+                <% } %>
+
+                    <% if (req.session.role=='student' ) {%>
+
+                        <section class="content aboutus flex-lg-grow-1">
+                            <h5 class="main-heading1"><span class="highlight">Status</span></h5>
+                            <div class="container-fluid">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"># </th>
+                                            <th scope="col">Student No.</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Comment</th>
+                                            <th scope="col">Result</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        <% student.forEach(function(model) { %>
+                                            <% if (model.EngName !="" && model.FormNum==req.session.Email &&
+                                                model.confirm_student=="" ){ %>
+                                                <tr>
+                                                    <th scope="row"></th>
+                                                    <td>INDC<%=model.StudentNo%>
+                                                    </td>
+                                                    <td>
+                                                        <%= model.EngName %> </a>
+                                                    </td>
+                                                    <td>Waiting</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary"
+                                                            onclick='location.href="/comment/<%=model.id%>"'>Comment</button>
+                                                    </td>
+                                                    <% if (model.admit_student=="Y" ){ %>
+                                                        <td>
+                                                            Admitted
+                                                        </td>
+                                                        <% } %>
+                                                            <% if (model.admit_student=="N" ){ %>
+                                                                <td>
+                                                                    Rejected
+                                                                </td>
+                                                                <% } %>
+
+
+
+                                                </tr>
+
+                                                <%} else if(model.EngName !="" && model.FormNum==req.session.Email &&
+                                                    model.confirm_student=="N" ){%>
+                                                    <tr>
+                                                        <th scope="row"></th>
+                                                        <td>INDC<%=model.StudentNo%>
+                                                        </td>
+                                                        <td><a href="/student/update_student/<%=model.id%>">
+                                                                <%= model.EngName %>
+                                                            </a></td>
+                                                        <td>Rejected</td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-primary"
+                                                                onclick='location.href="/comment/<%=model.id%>"'>Comment</button>
+                                                        </td>
+                                                        <% if (model.admit_student=="Y" ){ %>
+                                                            <td>
+                                                                Admitted
+                                                            </td>
+                                                            <% } %>
+                                                                <% if (model.admit_student=="N" ){ %>
+                                                                    <td>
+                                                                        Rejected
+                                                                    </td>
+                                                                    <% } %>
+                                                    </tr>
+
+                                                    <%} else if(model.EngName !="" && model.FormNum==req.session.Email
+                                                        && model.confirm_student=="Y" ){%>
+                                                        <tr>
+                                                            <th scope="row"></th>
+                                                            <td>INDC<%=model.StudentNo%>
+                                                            </td>
+                                                            <td><a href="/student/update_student/<%=model.id%>">
+                                                                    <%= model.EngName %>
+                                                                </a></td>
+                                                            <td>Accepted</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-primary"
+                                                                    onclick='location.href="/comment/<%=model.id%>"'>Comment</button>
+                                                            </td>
+                                                            <% if (model.admit_student=="Y" ){ %>
+                                                                <td>
+                                                                    Admitted
+                                                                </td>
+                                                                <% } %>
+                                                                    <% if (model.admit_student=="N" ){ %>
+                                                                        <td>
+                                                                            Rejected
+                                                                        </td>
+                                                                        <% } %>
+                                                        </tr>
+
+                                                        <%} %>
+
+
+                                                            <% }); %>
+
+                                    </tbody>
+                                </table>
+
+
+                                <% } %>
+
+                                    <script>
+
+                                        async function confirmStudent(id) {
+
+                                            var r = confirm("Confirm Application?");
+
+                                            if (r) {
+
+                                                var response = await fetch("/student/confirm_student/" + id, {
+                                                    method: "POST",
+                                                    credentials: 'same-origin',
+                                                });
+
+                                                if (response.ok) {
+                                                    var data = await response.json();
+                                                    alert(data.message);
+                                                    window.location = data.url;
+                                                } else {
+                                                    alert(response.status + ": " + response.statusText);
+                                                }
+
+                                            } else {
+                                                alert("cancelled");
+                                            }
+
+                                        };
+
+                                        async function cancelStudent(id) {
+
+                                            var r = confirm("Reject Application?");
+
+                                            if (r) {
+
+                                                var response = await fetch("/student/cancel_student/" + id, {
+                                                    method: "POST",
+                                                    credentials: 'same-origin',
+                                                });
+
+                                                if (response.ok) {
+                                                    var data = await response.json();
+                                                    alert(data.message);
+                                                    window.location = data.url;
+                                                } else {
+                                                    alert(response.status + ": " + response.statusText);
+                                                }
+
+                                            } else {
+                                                alert("cancelled");
+                                            }
+
+                                        };
+
+                                        //var table = document.getElementsByTagName('table')[0],
+                                        //    rows = table.getElementsByTagName('tr'),
+                                        //    text = 'textContent' in document ? 'textContent' : 'innerText';
+
+                                        //for (var i = 0, len = rows.length; i < len; i++) {
+                                        //    rows[i + 1].children[0][text] = (i + 1) + '.    ' + rows[i + 1].children[0][text];
+                                        //}
+
+
+                                    </script>

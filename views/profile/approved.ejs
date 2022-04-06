@@ -1,0 +1,61 @@
+<%- partial('./partial/sidemenu.ejs') %>
+
+    <section class="content aboutus flex-lg-grow-1">
+        <h5 class="main-heading1">Application<span class="highlight"> List</span></h5>
+        <div class="container-fluid">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"># </th>
+                        <th scope="col">Student No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Result</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Faculty</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+
+                    <% student.forEach(function(model) { %>
+
+
+
+                        <% if (model.EngName !="" && (model.confirm_student=="Y" || model.confirm_student=="N" )){ %>
+                            <tr>
+                                <th scope="row">√</th>
+                                <td>INDC<%=model.StudentNo%>
+                                </td>
+                                <td><a href="/student/update_student/<%=model.id%>">
+                                        <%= model.EngName %>
+                                    </a></td>
+                                <% if (model.confirm_student=="Y" ){ %>
+                                    <td>Accepted</td>
+                                    <td>End</td>
+                                    <% if (model.teacherFaculty =="" ){ %>
+                                    <td><button type="button" class="btn btn-primary" onclick='location.href="/faculty/<%=model.id%>"'>Faculty</button></td>
+                                    <% } %>
+                                    <% if (model.teacherFaculty !="" ){ %>
+                                        <td><%=model.teacherFaculty%></td>
+                                        <% } %>
+
+                                    <% } else if (model.confirm_student=="N" ){ %>
+                                        <td>Rejected</td>
+                                        <td>End</td>
+                                        <%}%>
+                            </tr>
+
+                            <%}%>
+
+
+
+
+                                <% }); %>
+
+                </tbody>
+
+            </table>
+        </div>
+    </section>

@@ -1,0 +1,16 @@
+<aside class="user" style="width: 200px;">
+  <section>
+    <h6 class="side-heading3"><span class="reflect" data-text="用戶專區" style="font-size: 20px;">Account</span></h6>
+    <ul class="list-unstyled">
+      <!-- <% if (req.session.role=='admin' ) { %>
+        <li><a class="side-button1 <%= req.path.startsWith('/admin') ? 'active':'' %>" href="/admin"
+            style="font-size: 15px;">System Setting</a></li>
+        <% } %>
+          <li><a class="side-button1 <%= req.path === '/user' ? 'active':'' %>" href="/user"
+              style="font-size: 15px;">User contact</a></li>
+          <li><a class="side-button1 <%= req.path.toString().startsWith('/user/detail') ? 'active':'' %>"
+              href="/user/detail" style="font-size: 15px;">User information</a></li> -->
+          <li><a class="side-button1" href="/user/logout" style="font-size: 15px;">Logout</a></li>
+    </ul>
+  </section>
+</aside>
